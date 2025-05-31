@@ -8,5 +8,4 @@ export const menuRouter = Router();
 menuRouter.get("/", async (_: Request, res: Response) => {
   const menus = await MenuModel.find().populate("category_id"); // Populate userId with User fields
   res.status(200).json(menus);
-  console.log(menus)
 });
