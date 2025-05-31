@@ -333,7 +333,7 @@
             const beveragesContainer = document.getElementById("pills-beverages").querySelector(".row");
 
             try {
-                const response = await fetch("http://localhost:8000/api/v1/menus");
+                const response = await fetch("/api/v1/menus");
                 const menus = await response.json();
 
                 menus.forEach((menu) => {
@@ -384,7 +384,7 @@
         const orderQty = [];
 
         let i = 0;
-        
+
 
         function orderCart(itemId, itemName, itemPrice, itemImage) {
 
@@ -686,7 +686,7 @@
             disableButtonAfterPaid();
 
 
-            const response = await fetch("http://localhost:8000/api/v1/orders", {
+            const response = await fetch("/api/v1/orders", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -845,7 +845,7 @@
         // Load the latest order when the page is refreshed
         async function loadLatestOrder() {
             try {
-                const response = await fetch("http://localhost:8000/api/v1/orders/latest"); // Fetch latest order
+                const response = await fetch("/api/v1/orders/latest"); // Fetch latest order
                 if (!response.ok) {
                     latestOrderNumber = 0;
                     orderNumber = 1;
@@ -878,7 +878,7 @@
                 const nextOrderNumber = orderNumber + direction;
 
                 // Get next or previous order
-                const response = await fetch(`http://localhost:8000/api/v1/orders/${String(orderNumber + direction).padStart(2, '0')}`);
+                const response = await fetch(`/api/v1/orders/${String(orderNumber + direction).padStart(2, '0')}`);
 
                 if (!response.ok) {
 
