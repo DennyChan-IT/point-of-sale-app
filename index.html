@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant POS App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bg-dark p-3">
+        <div class="row mx-0 py-3 bg-light">
+            <div class="col-sm-8">
+                <p>Order #01 <small class="text-muted">Aug 19 2024, 10:00 AM</small></p>
+
+                <div class="card rounded-3 mb-3">
+                    <div class="card-body">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-foods-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-foods" type="button" role="tab" aria-controls="pills-foods"
+                                    aria-selected="true">Foods</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-beverages-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-beverages" type="button" role="tab"
+                                    aria-controls="pills-beverages" aria-selected="false">Beverages</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-foods" role="tabpanel"
+                        aria-labelledby="pills-foods-tab" tabindex="0">
+
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 1', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`), totalItems(), totalCosts()">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Burger</h5>
+                                        <p class="fw-bold">$ 8.49</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 2', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`), totalItems(), totalCosts()">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Burger</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 3', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`), totalItems(), totalCosts()">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Burger</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 4', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`), totalItems(), totalCosts()">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Burger</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 5', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`), totalItems(), totalCosts()">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Burger</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 6', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`), totalItems(), totalCosts()">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Burger</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-beverages" role="tabpanel"
+                        aria-labelledby="pills-beverages-tab" tabindex="0">
+
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 1', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`), totalItems(), totalCosts()">
+                                    <img src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Soft Drink</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 2', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`), totalItems(), totalCosts()">
+                                    <img src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Soft Drink</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 3', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`), totalItems(), totalCosts()">
+                                    <img src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Soft Drink</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card"
+                                    onclick="orderbasket('Item 4', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`), totalItems(), totalCosts()">
+                                    <img src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Soft Drink</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Order</h5>
+                        <hr>
+                        <ul id="orderList" class="list-unstyled">
+                            <li> <img
+                                    src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
+                                    class="w-25" /> <span>Burger</span>
+                                <span class="text-danger">$ 8.49</span>
+                            </li>
+                        </ul>
+                        <hr>
+                        <big id="totalItems" class="card-text"></big>
+                        <big id="totalCost" class="card-text"></big>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        const orderItemsArray = [];
+        const orderPriceArray = [];
+
+        function orderbasket(itemname, itemprice, itemimage) {
+            orderItemsArray.push(itemname);
+            orderPriceArray.push(itemprice);
+
+            const orderList = document.getElementById("orderList");
+
+            // Create the LI tag
+            const orderItem = document.createElement("li");
+
+            // Create a span for red color
+            const orderItemPriceSpan = document.createElement("span");
+
+            // Create the text node with itemname and itemprice
+            const orderItemName = document.createTextNode(itemname);
+            const orderItemPrice = document.createTextNode(" $ " + itemprice);
+
+            // Adjust text color to text-danger
+            orderItemPriceSpan.className = "text-danger";
+
+            // Add price text node into orderItemPrice
+            orderItemPriceSpan.appendChild(orderItemPrice);
+
+            // Attach the itemname tag and itemprice to LI tag
+            orderItem.appendChild(orderItemName);
+
+            // Attach the orderItemPriceSpan into LI tag
+            orderItem.appendChild(orderItemPriceSpan);
+
+            // Attach or append the LI tag (child) to parent id= "orderlist"
+            orderList.appendChild(orderItem);
+
+            // IMAGE section
+            // step 1: Create img tag
+            const orderItemImg = document.createElement("img");
+
+            // assign the src itemimage to img
+            orderItemImg.src = itemimage;
+
+            // classname w-25 for image
+            orderItemImg.className = "w-25";
+
+            // appendChild to LI
+            orderList.appendChild(orderItemImg);
+        }
+
+        function totalItems() {
+            document.getElementById("totalItems").innerText = orderItemsArray.length;
+        };
+
+        function totalCosts() {
+            document.getElementById("totalCost").innerText = orderPriceArray.reduce(sumArray).toFixed(2);
+            function sumArray(total, num) {
+                return total + num;
+            };
+            orderPriceArray.reduce(orderPriceArray)
+        };
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
