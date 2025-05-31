@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <div class="bg-dark p-3">
-        <div class="row mx-0 py-3 bg-light">
+    <div class="vh-100 bg-dark p-3">
+        <div class="row mx-0 py-3 bg-light"  style="height: 95vh;" >
             <div class="col-sm-8">
                 <p>Order #01 <small class="text-muted">Aug 19 2024, 10:00 AM</small></p>
 
@@ -39,134 +39,24 @@
 
                 <div class="tab-content" id="pills-tabContent">
 
+
                     <div class="tab-pane fade show active" id="pills-foods" role="tabpanel"
                         aria-labelledby="pills-foods-tab">
 
-                        <div class="row row-cols-1 row-cols-md-4 g-4">
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(1, 'Item 1', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`)">
-                                    <img draggable="false"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Burger</h5>
-                                        <p class="fw-bold">$ 8.49</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(2, 'Item 2', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`)">
-                                    <img draggable="false"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Burger</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(3, 'Item 3', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`)">
-                                    <img draggable="false"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Burger</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(4, 'Item 4', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`)">
-                                    <img draggable="false"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Burger</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(5, 'Item 5', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`)">
-                                    <img draggable="false"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Burger</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(6, 'Item 6', 1.99, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU`)">
-                                    <img draggable="false"
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnwgLv0XfXLs6IBRAOi6krRIDC7lncLwFGy1jU6cxrKp2jEivPjWQclSquNQnRlD-7wvM&usqp=CAU"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Burger</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="menu-container" class="row row-cols-1 row-cols-md-4 g-4"></div>
+                        
                     </div>
+
 
                     <div class="tab-pane fade" id="pills-beverages" role="tabpanel"
                         aria-labelledby="pills-beverages-tab">
 
-                        <div class="row row-cols-1 row-cols-md-4 g-4">
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(7, 'Item 1', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`)">
-                                    <img draggable="false"
-                                        src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Soft Drink</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(8, 'Item 2', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`)">
-                                    <img draggable="false"
-                                        src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Soft Drink</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(9, 'Item 3', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`)">
-                                    <img draggable="false"
-                                        src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Soft Drink</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card"
-                                    onclick="orderCart(10, 'Item 4', 1.99, `https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011`)">
-                                    <img draggable="false"
-                                        src="https://valleydirectfoods.com/cdn/shop/products/coca-cola-24-pack-561822.jpg?v=1699684011"
-                                        class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Soft Drink</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="menu-container" class="row row-cols-1 row-cols-md-4 g-4"></div>
 
                     </div>
+                    
 
                     <div class="tab-pane fade" id="pills-checkout" role="tabpanel" aria-labelledby="pills-checkout-tab">
-                        CHECK OUT
 
                         <div class="row mb-3">
                             <label for="colFormLabelLg" class="col-sm-4 col-form-label col-form-label-lg">Customer
@@ -227,7 +117,8 @@
                                 Customer</label>
                             <div class="col-sm-8">
                                 <button id="nextCustomer" class="rounded-pill btn btn-primary btn-lg w-100"
-                                    disabled>Next Customer
+                                    disabled>Next
+                                    Customer
                             </div>
                         </div>
 
@@ -366,6 +257,46 @@
 
 
     <script>
+        
+
+        // Fetch menu items from API and display them in their respective categories
+async function loadMenuItems() {
+  const foodsContainer = document.getElementById("menu-container"); // Foods tab
+  const beveragesContainer = document.getElementById("pills-beverages").querySelector(".row");
+
+  try {
+    const response = await fetch("http://localhost:8000/api/v1/menus");
+    const menus = await response.json();
+
+    menus.forEach((menu) => {
+      const menuCard = `
+        <div class="col">
+          <div class="card" onclick="orderCart('${menu._id}', '${menu.name}', ${menu.price}, '${menu.image}')">
+            <img draggable="false" src="${menu.image}" class="card-img-top" alt="${menu.name}">
+            <div class="card-body">
+              <h5 class="card-title">${menu.name}</h5>
+              <p class="fw-bold">$ ${menu.price.toFixed(2)}</p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Check category and append to the correct container
+      if (menu.category_id.name === "Foods") {
+        foodsContainer.innerHTML += menuCard;
+      } else if (menu.category_id.name === "Beverages") {
+        beveragesContainer.innerHTML += menuCard;
+      }
+    });
+  } catch (err) {
+    console.error("Failed to load menu items:", err);
+  }
+}
+
+// Call the function when the page loads
+window.onload = loadMenuItems;
+
+
         const orderItemIdArray = [];
 
         const orderIdArray = [];
