@@ -213,6 +213,24 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="printReceipt" class="col-sm-4 col-form-label col-form-label-lg">Print
+                                Receipt</label>
+                            <div class="col-sm-8">
+                                <button id="printReceipt" class="rounded-pill btn btn-dark btn-lg w-100" disabled>Print
+                                    Receipt
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="nextCustomer" class="col-sm-4 col-form-label col-form-label-lg">Next
+                                Customer</label>
+                            <div class="col-sm-8">
+                                <button id="nextCustomer" class="rounded-pill btn btn-primary btn-lg w-100"
+                                    disabled>Next Customer
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -223,7 +241,8 @@
                     <div class="card-body">
                         <h5 class="d-flex justify-content-between align-items-center">
                             <span>Order</span>
-                            <button onclick="clearOrderCart()" class="btn btn-sm btn-danger rounded-pill">
+                            <button id="clearButton" onclick="clearOrderCart()"
+                                class="btn btn-sm btn-danger rounded-pill">
                                 Clear
                             </button>
                         </h5>
@@ -639,7 +658,40 @@
             customerChange.value = customerPaidAmount.value - document.getElementById("totalAmount").value;
 
             document.getElementById("calculatorModal").disabled = true;
+
+            enableNextCustomerAndPrintReceipt();
+
+
+            // ***************************************************************************
+
+            disableButtonAfterPaid();
+
+            console.log(document.getElementById('totalAmount').value);
+
+            console.log(document.getElementById('totalAmountCustomerPaid').value);
+
+            console.log(document.getElementById('totalCustomerChange').value);
+
+            if (document.getElementById('customername').value.length == 0) {
+                console.log('nothing');
+            }
         };
+
+        function enableNextCustomerAndPrintReceipt() {
+            document.getElementById("printReceipt").disabled = false;
+            document.getElementById("nextCustomer").disabled = false;
+        }
+
+        function disableButtonAfterPaid() {
+            document.getElementById("pills-foods-tab").disabled = true;
+            document.getElementById("pills-beverages-tab").disabled = true;
+            document.getElementById("clearButton").disabled = true;
+            const itemButton = document.getElementById("orderList").querySelectorAll('button')
+
+            for (let i = 0; i < itemButton.length; i++) {
+                itemButton[i].disabled = true;
+            };
+        }
 
         function enableCheckOutButton() {
             const checkOutButton = document.getElementById("checkOutButton");
