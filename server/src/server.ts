@@ -1,6 +1,7 @@
 import { config } from "dotenv";
+import path from "path";
 import express, { Request, Response } from "express";
-import cors from 'cors';
+import cors from "cors";
 import { apiRouter } from "./routers";
 import { connectDB } from "./utils/database";
 
@@ -11,11 +12,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+
 connectDB();
 
-app.use('/api/v1', apiRouter);
+app.use("/api/v1", apiRouter);
 
 app.listen(process.env.PORT, () => {
-    console.log(`[server]: Listening at http:${process.env.PORT}`);
-  });
-  
+  console.log(`[server]: Listening at http:${process.env.PORT}`);
+});

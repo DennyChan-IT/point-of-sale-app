@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+    .no-scrollbar {
+        overflow: auto;
+        /* enable scrolling */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +21,18 @@
     <div class="vh-100 bg-dark p-3">
         <div class="row mx-0 py-3 bg-light" style="height: 95vh;">
             <div class="col-sm-8">
-                <p>Order #<span id="orderNumber">01</span> <small class="text-muted">Aug 19 2024, 10:00 AM</small></p>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <p class="mb-0">Order #<span id="orderNumber"></span> <small class="text-muted"></small>
+                    </p>
+                    <div>
+                        <button id="prevOrder" style="border: 1px solid #D2D1D2;"
+                            onclick="navigateOrder(-1)">Prev</button>
+                        <button id="nextOrder" style="border: 1px solid #D2D1D2;"
+                            onclick="navigateOrder(1)">Next</button>
+                    </div>
+                </div>
+
+
 
                 <div class="card rounded-3 mb-3">
                     <div class="card-body">
@@ -43,7 +63,9 @@
                     <div class="tab-pane fade show active" id="pills-foods" role="tabpanel"
                         aria-labelledby="pills-foods-tab">
 
-                        <div id="menu-container" class="row row-cols-1 row-cols-md-4 g-4"></div>
+                        <div id="menu-container" class="row row-cols-1 row-cols-md-6 g-4 mt-4"
+                            style="height: 73vh; overflow-y: auto">
+                        </div>
 
                     </div>
 
@@ -51,7 +73,9 @@
                     <div class="tab-pane fade" id="pills-beverages" role="tabpanel"
                         aria-labelledby="pills-beverages-tab">
 
-                        <div id="menu-container" class="row row-cols-1 row-cols-md-4 g-4"></div>
+                        <div id="menu-container" class="row row-cols-1 row-cols-md-6 g-4 mt-4"
+                            style="height: 73vh; overflow-y: auto">
+                        </div>
 
                     </div>
 
@@ -108,8 +132,8 @@
                             <label for="nextCustomer" class="col-sm-4 col-form-label col-form-label-lg">Next
                                 Customer</label>
                             <div class="col-sm-8">
-                                <button id="nextCustomer" class="rounded-pill btn btn-primary btn-lg w-100"
-                                    disabled onclick="nextCustomerButton()">Next
+                                <button id="nextCustomer" class="rounded-pill btn btn-primary btn-lg w-100" disabled
+                                    onclick="nextCustomerButton()">Next
                                     Customer
                             </div>
                         </div>
@@ -136,7 +160,7 @@
                         <hr>
                         <ul class="list-unstyled mb-0">
                             <li class="d-flex justify-content-between align-items-center">
-                                <big>Total Items:</big><big id="totalItems" class="fw-bold card-text"></big>
+                                <big>Total Items:</big><big id="totalItems" class="fw-bold card-text">0</big>
                             </li>
                             <li class="d-flex justify-content-between align-items-center">
                                 <big>Total Amount:</big> <big class="fw-bold">$ <span id="totalCost"
@@ -314,31 +338,40 @@
 
                 menus.forEach((menu) => {
                     const menuCard = `
-        <div class="col">
-          <div class="card" onclick="orderCart('${menu._id}', '${menu.name}', ${menu.price}, '${menu.image}')">
-            <img draggable="false" src="${menu.image}" class="card-img-top" alt="${menu.name}">
-            <div class="card-body">
-              <h5 class="card-title">${menu.name}</h5>
-              <p class="fw-bold">$ ${menu.price.toFixed(2)}</p>
-            </div>
-          </div>
-        </div>
-      `;
+                    <div class="col mt-0 mb-4">
+                      <div
+                        class="card"
+                        onclick="orderCart('${menu._id}', '${menu.name}', ${menu.price}, '${menu.image}')"
+                      >
+                        <img draggable="false"
+                             src="${menu.image}"
+                             class="card-img-top"
+                            alt="${menu.name}"
+                            style="object-fit:contain; height:100px;"    
+                       >
+                       <div class="card-body p-2">
+                         <h6 class="card-title">${menu.name}</h6>
+                         <p class="fw-bold mt-auto mb-0">$ ${menu.price.toFixed(2)}</p>
+                       </div>
+                     </div>
+                    </div>
+                    `;
 
                     // Check category and append to the correct container
                     if (menu.category_id.name === "Foods") {
                         foodsContainer.innerHTML += menuCard;
                     } else if (menu.category_id.name === "Beverages") {
                         beveragesContainer.innerHTML += menuCard;
-                    }
+                    };
                 });
+
             } catch (err) {
                 console.error("Failed to load menu items:", err);
-            }
-        }
+            };
+        };
 
         // Call the function when the page loads
-        window.onload = loadMenuItems;
+        window.addEventListener("load", loadMenuItems);
 
 
         const orderItemIdArray = [];
@@ -351,9 +384,7 @@
         const orderQty = [];
 
         let i = 0;
-
-        let orderNumber = 1;
-
+        
 
         function orderCart(itemId, itemName, itemPrice, itemImage) {
 
@@ -361,10 +392,9 @@
                 const index = orderItemsArray.indexOf(itemName);
                 orderQty[index] = orderQty[index] + 1;
 
-                incrementAndDecrement(orderIdArray[index], 1)
-            }
+                incrementAndDecrement(orderIdArray[index], 1);
 
-            else {
+            } else {
 
                 orderItemIdArray.push(itemId);
 
@@ -471,7 +501,7 @@
             };
 
             totalItems();
-            totalCosts();
+            totalCost();
 
             enableCheckOutButton();
         };
@@ -483,7 +513,7 @@
             const index = orderIdArray.indexOf(id);
             orderQty[index] = parseInt(itemId.innerText);
             totalItems();
-            totalCosts();
+            totalCost();
 
 
             if (itemId.innerText == 0) {
@@ -512,7 +542,7 @@
             }, 0);
         };
 
-        function totalCosts() {
+        function totalCost() {
             if (orderPriceArray.length === 0) {
                 document.getElementById("totalCost").innerText = parseFloat("0").toFixed(2);
             } else {
@@ -543,7 +573,7 @@
             orderQty.length = 0;
             i = 0;
             totalItems();
-            totalCosts();
+            totalCost();
 
             enableCheckOutButton()
         };
@@ -559,7 +589,7 @@
             orderQty.splice(index, 1);
 
             totalItems();
-            totalCosts();
+            totalCost();
             orderList.removeChild(button.parentElement.parentElement);
 
             if (orderPriceArray.length === 0) {
@@ -622,41 +652,78 @@
             };
         };
 
-        function confirmPaid() {
-            const customerPaidAmount = document.getElementById("totalAmountCustomerPaid");
-            customerPaidAmount.value = calculatorAmount.value;
+        async function confirmPaid() {
 
-            const customerChange = document.getElementById("totalCustomerChange");
+            const orderNumber = document.getElementById("orderNumber").innerText;
+            const orderAmount = parseFloat(document.getElementById("totalAmount").value);
 
-            customerChange.value = customerPaidAmount.value - document.getElementById("totalAmount").value;
+
+            const customerPaidAmount = parseFloat(calculatorAmount.value);
+            document.getElementById("totalAmountCustomerPaid").value = customerPaidAmount;
+
+            const customerChange = customerPaidAmount - orderAmount;
+            document.getElementById("totalCustomerChange").value = customerChange;
 
             document.getElementById("calculatorModal").disabled = true;
 
-            enableNextCustomerAndPrintReceipt();
 
+            const items = orderItemsArray.map((item, index) => ({
+                menu_id: orderItemIdArray[index],
+                menuItemImage: orderImageArray[index],
+                menuItemName: item,
+                menuItemPrice: orderPriceArray[index],
+                quantity: orderQty[index],
+                subtotal: orderQty[index] * orderPriceArray[index]
+            }));
 
-            // ***************************************************************************
+            latestOrderNumber = orderNumber;
+
+            enableNextCustomer();
+            enablePrintReceipt();
+            document.getElementById("nextOrder").disabled = false
+
 
             disableButtonAfterPaid();
 
 
+            const response = await fetch("http://localhost:8000/api/v1/orders", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    orderNumber,
+                    orderAmount,
+                    customerPaidAmount,
+                    customerChange,
+                    items
+                }),
+            });
+
+            if (response.ok) {
+                console.log("Order saved successfully!");
+            } else {
+                console.error("Failed to save order");
+            };
+
         };
 
-        function enableNextCustomerAndPrintReceipt() {
-            document.getElementById("printReceipt").disabled = false;
+        function enableNextCustomer() {
             document.getElementById("nextCustomer").disabled = false;
-        }
+        };
+
+        function enablePrintReceipt() {
+            document.getElementById("printReceipt").disabled = false;
+        };
 
         function disableButtonAfterPaid() {
             document.getElementById("pills-foods-tab").disabled = true;
             document.getElementById("pills-beverages-tab").disabled = true;
             document.getElementById("clearButton").disabled = true;
-            const itemButton = document.getElementById("orderList").querySelectorAll('button')
+            const itemButton = document.getElementById("orderList").querySelectorAll('button');
 
             for (let i = 0; i < itemButton.length; i++) {
                 itemButton[i].disabled = true;
             };
-        }
+        };
 
         function enableCheckOutButton() {
             const checkOutButton = document.getElementById("checkOutButton");
@@ -684,16 +751,17 @@
 
 
         function showReceiptModal() {
-            const orderNumber = "01"; // Generate dynamically if needed
+            const orderNumber = document.getElementById("orderNumber").innerText
             const date = new Date().toLocaleString();
             const items = orderItemsArray.map((item, index) => `
             <tr>
                 <td>${orderItemsArray[index]}</td>
-              <td>${orderQty[index]}</td>
-              <td>$${orderPriceArray[index].toFixed(2)}</td>
-              <td>$${(orderQty[index] * orderPriceArray[index]).toFixed(2)}</td>
+                <td>${orderQty[index]}</td>
+                <td>$${orderPriceArray[index].toFixed(2)}</td>
+                <td>$${(orderQty[index] * orderPriceArray[index]).toFixed(2)}</td>
             </tr>
             `).join("");
+
             const subtotal = parseFloat(document.getElementById("totalAmount").value).toFixed(2);
             const tax = 0;
             const total = subtotal;
@@ -731,13 +799,12 @@
             </html>
             `);
 
-            printWindow.document.close(); // ✅ Finalizes the document so the browser knows it's complete
-            // ❌ No `printWindow.document.close();` here
+            printWindow.document.close();
 
 
             // Trigger the print dialog and close the window afterward
             printWindow.onload = () => {
-                printWindow.print(); // ❌ This may NOT work because the document is still "open"
+                printWindow.print();
                 printWindow.close();
             };
         };
@@ -771,9 +838,140 @@
 
             // Enable the checkout button if needed
             enableCheckOutButton();
-        }
+        };
 
 
+
+        // Load the latest order when the page is refreshed
+        async function loadLatestOrder() {
+            try {
+                const response = await fetch("http://localhost:8000/api/v1/orders/latest"); // Fetch latest order
+                if (!response.ok) {
+                    latestOrderNumber = 0;
+                    orderNumber = 1;
+                    document.getElementById("orderNumber").textContent = "01"; console.log("No previous orders found. Starting from Order #01");
+                    updateNavigationButtons();
+                    return;
+                }
+
+                const { order } = await response.json(); // Get order data
+                latestOrderNumber = parseInt(order.orderNumber) || 1; // Fallback to 1 if undefined
+
+                // Set orderNumber to the latest order + 1
+                orderNumber = latestOrderNumber + 1;
+
+                // Update UI to reflect new order number
+                document.getElementById("orderNumber").textContent = String(orderNumber).padStart(2, '0');
+
+                updateNavigationButtons(); // Ensure buttons are enabled/disabled correctly
+
+            } catch (error) {
+                console.error("Error loading latest order:", error);
+            };
+        };
+
+
+
+        // Function to navigate orders
+        async function navigateOrder(direction) {
+            try {
+                const nextOrderNumber = orderNumber + direction;
+
+                // Get next or previous order
+                const response = await fetch(`http://localhost:8000/api/v1/orders/${String(orderNumber + direction).padStart(2, '0')}`);
+
+                if (!response.ok) {
+
+
+                    // If the user moves to a **new order** (latest + 1), just update the UI
+                    if (nextOrderNumber == orderNumber + 1) {
+                        orderNumber = nextOrderNumber;
+                        document.getElementById("orderNumber").textContent = String(orderNumber).padStart(2, '0');
+                        clearOrderCart();
+                        document.getElementById("printReceipt").disabled = true;
+
+                        // Reset payment fields
+                        document.getElementById("totalAmountCustomerPaid").value = "";
+                        document.getElementById("totalCustomerChange").value = "";
+                        document.getElementById("calculatorAmount").value = "0";
+
+                        // re-enable the “Insert Paid Amount” button for a fresh order:
+                        document.getElementById("calculatorModal").disabled = false;
+
+                        // Re-enable the order buttons
+                        document.getElementById("pills-foods-tab").disabled = false;
+                        document.getElementById("pills-beverages-tab").disabled = false;
+                        updateNavigationButtons();
+                        return;
+                    }
+                    return;
+                }
+
+                const { order, items, totalItems, totalCost } = await response.json(); // Include totalItems
+
+                // Update current order number
+                orderNumber = parseInt(order.orderNumber);
+                document.getElementById("orderNumber").textContent = String(orderNumber).padStart(2, '0');
+
+                // Update payment details
+                document.getElementById("totalAmount").value = order.orderAmount;
+                document.getElementById("totalAmountCustomerPaid").value = order.customerPaidAmount.toFixed(2);
+                document.getElementById("totalCustomerChange").value = order.customerChange.toFixed(2);
+
+                // Clear existing order items
+                const orderList = document.getElementById("orderList");
+                orderList.innerHTML = "";
+
+                // Populate order items
+                items.forEach(item => {
+                    const orderItemLI = document.createElement("li");
+                    orderItemLI.innerHTML = `
+                    <span class="d-flex justify-content-between align-items-center">
+                        <span>
+                            <img src="${item.menuItemImage}" class="w-25 rounded border border-dark"> ${item.menuItemName}
+                            <span class="text-danger">$${item.subtotal.toFixed(2)}</span>    
+                        </span>
+                        <button class="btn btn-danger rounded-pill">X</button>                    
+                    </span>
+                    <button class="btn-sm btn btn-danger rounded-pill px-3 fw-bold">-</button>
+                    <span class="px-3 fw-bold">${item.quantity}</span>
+                    <button class="btn-sm btn btn-success rounded-pill px-3 fw-bold">+</button>
+                    `;
+
+                    orderList.appendChild(orderItemLI);
+                });
+
+                document.getElementById("totalItems").textContent = totalItems;
+                document.getElementById("totalCost").textContent = totalCost;
+
+
+                // Navigate to checkout tab
+                navigateToCheckOut();
+
+                // Disable buttons since order is already paid
+                disableButtonAfterPaid();
+
+                document.getElementById("calculatorModal").disabled = true;
+
+                enablePrintReceipt();
+
+                updateNavigationButtons();
+
+            } catch (error) {
+                console.error("Error fetching order:", error);
+            };
+        };
+
+        function updateNavigationButtons() {
+            document.getElementById("prevOrder").disabled = orderNumber <= 1; // Disable at order 01
+            document.getElementById("nextOrder").disabled = orderNumber > latestOrderNumber; // Disable after the latest + 1
+        };
+
+
+
+
+        // Load latest order when page is refreshed
+        window.addEventListener("load", loadLatestOrder);
 
     </script>
 
