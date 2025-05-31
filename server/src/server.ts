@@ -18,6 +18,10 @@ connectDB();
 
 app.use("/api/v1", apiRouter);
 
+app.use("/",
+  express.static(path.join(__dirname, "../../"))
+);
+
 app.listen(process.env.PORT, () => {
   console.log(`[server]: Listening at http:${process.env.PORT}`);
 });
