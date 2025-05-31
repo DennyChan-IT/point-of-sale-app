@@ -28,9 +28,9 @@
                                     aria-controls="pills-beverages" aria-selected="false">Beverages</button>
                             </li>
                             <li class="nav-item d-none" role="presentation">
-                                <button class="nav-link rounded-pill"
-                                    id="pills-checkout-tab" data-bs-toggle="pill" data-bs-target="#pills-checkout"
-                                    type="button" role="tab" aria-controls="pills-checkout" aria-selected="false">CHECK
+                                <button class="nav-link rounded-pill" id="pills-checkout-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-checkout" type="button" role="tab"
+                                    aria-controls="pills-checkout" aria-selected="false">CHECK
                                     OUT</button>
                             </li>
                         </ul>
@@ -242,7 +242,8 @@
                             </li>
                             <hr>
                             <li>
-                                <button id="checkOutButton" onclick="navigateToCheckOut()" class="btn btn-primary btn-lg w-100 rounded-pill">CHECK OUT</button>
+                                <button disabled id="checkOutButton" onclick="navigateToCheckOut()"
+                                    class="btn btn-primary btn-lg w-100 rounded-pill">CHECK OUT</button>
                             </li>
                         </ul>
                     </div>
@@ -306,7 +307,7 @@
 
                 <div class="modal-body">
 
-                    <div class="col-12 mb-3"><button onclick="customerexactAmount()"
+                    <div class="col-12 mb-3"><button onclick="customerExactAmount()"
                             class="btn w-100 rounded-pill text-center btn-warning">Exact Amount (<span
                                 id="exactAmount"></span>)</button>
                     </div>
@@ -427,7 +428,8 @@
             i++;
 
             // console.log(orderIdArray)
-        }
+            enableCheckOutButton();
+        };
 
         function totalItems() {
             document.getElementById("totalItems").innerText = orderItemsArray.length;
@@ -458,6 +460,8 @@
             i = 0;
             totalItems();
             totalCosts();
+
+            enableCheckOutButton()
         };
 
         function deleteItem(id, button) {
@@ -473,6 +477,8 @@
             if (orderPriceArray.length === 0) {
                 document.getElementById("totalAmount").value = parseFloat("0").toFixed(2);
             };
+
+            enableCheckOutButton();
         };
 
         function exactAmountSpanValue() {
@@ -503,7 +509,7 @@
             enableConfirmButton();
         };
 
-        function customerexactAmount() {
+        function customerExactAmount() {
             calculatorAmount.value = document.getElementById("totalAmount").value;
 
             enableConfirmButton();
@@ -539,12 +545,29 @@
             document.getElementById("calculatorModal").disabled = true;
         };
 
-        function navigateToCheckOut() {
-            var firstTabEl = document.getElementById("pills-checkout-tab");
-            var firstTab = new bootstrap.Tab(firstTabEl);
+        function enableCheckOutButton() {
+            const checkOutButton = document.getElementById("checkOutButton");
+            checkOutButton.disabled = true;
 
-            firstTab.show();
-        }
+            if (orderIdArray.length > 0) {
+                checkOutButton.disabled = false;
+            };
+
+            if (orderIdArray.length == 0) {
+                const foodTabEl = document.getElementById("pills-foods-tab");
+                const foodTab = new bootstrap.Tab(foodTabEl);
+
+                foodTab.show();
+            };
+
+        };
+
+        function navigateToCheckOut() {
+            const checkOutTabEl = document.getElementById("pills-checkout-tab");
+            const checkOutTab = new bootstrap.Tab(checkOutTabEl);
+
+            checkOutTab.show();
+        };
 
     </script>
 
